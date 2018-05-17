@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    <h1>{{ node.text }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'tree:detail' node.id %}" method="post">
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="subject"></label>
+            <input type="text" name="subject" id="subject" value="{{ node.subject }}"/>
+            <label for="text">text</label>
+            <textarea class="form-control" id="text" rows="5">{{ node.text }}</textarea>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+            </div>
+        </div>
+        <input type="submit" value="Vote"/>
+    </form>
+
+{% endblock contents %}

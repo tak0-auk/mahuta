@@ -1,0 +1,11 @@
+{% if root_list %}
+    <ul>
+    {% for node in root_list %}
+        <li><a href="{% url 'tree:detail' node.id %}">{{ node.text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing</p>
+    <a href="edit.html">new</a>
+
+{% endif %}
