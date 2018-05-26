@@ -1,3 +1,5 @@
+from enum import unique
+
 from django.db import models
 from django.utils import timezone
 
@@ -7,6 +9,7 @@ from django.utils import timezone
 
 class Work(models.Model):
     name = models.CharField(unique=True, max_length=128)
+    summary = models.CharField(max_length=255, null=True)
     is_individual = models.BooleanField(default=True)
     limit_date = models.DateField(default=timezone.now)
     # members = models.ManyToManyField()

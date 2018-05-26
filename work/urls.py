@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('create', views.WorkCreateView.as_view(), name='create'),
     path('<str:name>/', views.work_index, name='work'),
+    path('<str:name>/edit', views.WorkUpdateView.as_view(), name='edit'),
     # path('<int:pk>/', views.DetailView.as_view(), name='detail'),
 ]

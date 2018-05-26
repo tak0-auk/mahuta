@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .models import Work
 from .form import WorkForm
@@ -23,6 +24,16 @@ class WorkCreateView(generic.CreateView):
     form_class = WorkForm
     template_name = 'work/work_form.html'
     success_url = '/'
+
+
+class WorkUpdateView(generic.UpdateView):
+    # model = Work
+    form_class = WorkForm
+    template_name = 'work/work_form.html'
+    success_url = reverse_lazy('work:index')
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Work, name=self.kwargs['name'])
 
 
 def work_index(request, name):
