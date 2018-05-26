@@ -1,0 +1,10 @@
+{% extends 'cmn/base.html' %}
+{% block contents %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">save</button>
+    </form>
+
+{% endblock contents %}
