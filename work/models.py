@@ -1,6 +1,7 @@
 from enum import unique
 
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -9,9 +10,14 @@ from django.utils import timezone
 
 class Work(models.Model):
     name = models.CharField(unique=True, max_length=128)
-    summary = models.CharField(max_length=255, null=True)
-    is_individual = models.BooleanField(default=True)
+    summary = models.CharField(max_length=1024, null=True, blank=True)
     limit_date = models.DateField(default=timezone.now)
+    is_individual = models.BooleanField(default=True)
+    nodes = models.OneToOneField('Node', on_delete=models.PROTECT, null=True)
+
+    def get_absolute_url(self):
+        return reverse('work:work', args=[self.name])
+
     # members = models.ManyToManyField()
     #
     # class Meta:
@@ -26,3 +32,5 @@ class Node(models.Model):
 
     def __str__(self):
         return self.subject
+
+

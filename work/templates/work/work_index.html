@@ -2,16 +2,14 @@
 {% load static %}
 
 {% block contents %}
-{#{% if root_list %}#}
-{#    <ul>#}
-{#    {% for work in work_list %}#}
-{#        <li><a href="{% url 'work:work' work.name %}">{{ work.name }}</a></li>#}
-{#    {% endfor %}#}
-{#    </ul>#}
-{#{% else %}#}
-{#    <p>Nothing</p>#}
-{#    <a href="{% url 'work:create' %}">new</a>#}
-{##}
-{#{% endif %}#}
+
+    <div class="" style="margin-left: 50px;margin-top: 30px;margin-right: 50px">
+        <h2>{{ work.name }}</h2>
+        {{ work.summary }}
+    </div>
+    <div>
+        <a class="btn btn-success" href="{% url 'work:edit' work.name %}">edit</a>
+    </div>
+
 
 {% endblock contents %}
