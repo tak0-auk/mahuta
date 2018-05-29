@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.base import kwarg_re
 from django.views import generic
 from django.urls import reverse_lazy
@@ -39,6 +39,7 @@ class WorkUpdateView(generic.UpdateView):
     # model = Work
     form_class = WorkForm
     template_name = 'work/work_form.html'
+    fields = ('name', 'summary')
     # success_url = reverse_lazy('work:work', kwargs={'name'})
 
     def get_object(self, queryset=None):
@@ -63,4 +64,5 @@ def work_save(request, name):
     work.name = request.POST['name']
     work.summary = request.POST['summary']
     work.save()
-    return render(request, 'work/work_index.html', {'work': work})
+    return redirect('work:work', name=name)
+    # return render(request, 'work/work_index.html', {'work': work})
